@@ -34,8 +34,8 @@ public class User {
     @Column(name = "gender")
     String gender;
 
-    @Column(name = "data_of_brith")
-    LocalDate dateOfBrith;
+    @Column(name = "data_of_birth")
+    LocalDate dateOfBirth;
 
 
     public void setFirstName(String firstName) {
@@ -79,11 +79,11 @@ public class User {
         this.gender = gender;
     }
 
-    public LocalDate getDateOfBrith() {
-        return dateOfBrith;
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
     }
 
-    public void setDateOfBrith(LocalDate dateOfBrith) {
-        this.dateOfBrith = dateOfBrith;
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 }

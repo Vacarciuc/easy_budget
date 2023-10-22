@@ -16,20 +16,22 @@ public class UserController {
     private UserRepository userRepository;
 
 
+
+    ///adauga verificari si limitari
     @PostMapping(path = "/adduser")
     public @ResponseBody String addUser(@RequestParam String firstName,
                                         @RequestParam String lastName,
                                         @RequestParam String email,
                                         @RequestParam String password,
                                         @RequestParam String gender,
-                                        @RequestParam LocalDate dataOfBrith){
+                                        @RequestParam LocalDate dataOfBirth){
         User user=new User();
         user.setFirstName(firstName);
         user.setLastName(lastName);
         user.setEmail(email);
         user.setPassword(password);
         user.setGender(gender);
-        user.setDateOfBrith(dataOfBrith);
+        user.setDateOfBirth(dataOfBirth);
         userRepository.save(user);
         return "User was saved";
     }
