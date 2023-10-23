@@ -1,6 +1,7 @@
 package com.example.test.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -19,24 +20,40 @@ public class User {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
+    @NotEmpty(message = "The first name cannot be empty")
+    @Size(min = 3, message = "The first name field must greater the 3 characters")
     @Column(name = "first_name")
-    String firstName;
+    private String firstName;
 
+    @NotEmpty(message = "The last name cannot be empty")
+    @Size(min = 3, message = "The first name field must greater the 3 characters")
     @Column(name = "last_name")
-    String lastName;
+    private String lastName;
 
+    @Email
+    @NotEmpty
+    @Pattern(regexp = "([a-zA-Z0-9]+(?:[._+-][a-zA-Z0-9]+)*)@([a-zA-Z0-9]+(?:[.-][a-zA-Z0-9]+)*[.][a-zA-Z]{2,})",
+            message = "Please Insert a Valid Email")
     @Column(name = "email")
-    String email;
+    private String email;
 
+    @NotEmpty
+    @NotNull
     @Column(name = "password")
-    String password;
+    private String password;
 
+    @NotEmpty
     @Column(name = "gender")
-    String gender;
+    private String gender;
 
-    @Column(name = "data_of_brith")
-    LocalDate dateOfBrith;
+    @NotNull
+    @Column(name = "data_of_birth")
+    private LocalDate dateOfBirth;
 
+
+    public UUID getId() {
+        return id;
+    }
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
@@ -79,11 +96,11 @@ public class User {
         this.gender = gender;
     }
 
-    public LocalDate getDateOfBrith() {
-        return dateOfBrith;
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
     }
 
-    public void setDateOfBrith(LocalDate dateOfBrith) {
-        this.dateOfBrith = dateOfBrith;
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 }
