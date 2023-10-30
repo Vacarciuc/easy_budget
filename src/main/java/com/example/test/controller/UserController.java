@@ -2,6 +2,7 @@ package com.example.test.controller;
 
 import com.example.test.model.User;
 import com.example.test.repository.UserRepository;
+import com.example.test.security.Sesiune;
 import com.example.test.security.UserSession;
 import com.example.test.services.UserException;
 import com.example.test.services.UserServices;
@@ -21,6 +22,9 @@ public class UserController {
 
     @Autowired
     UserServices userServices;
+
+//    @Autowired
+//    Sesiune sesiune;
 
 
     ///adauga verificari si limitari
@@ -49,11 +53,13 @@ public class UserController {
         List<User>userList;
         try {
             userList=userServices.loginUser(email, password);
+//            String token=sesiune.incepeSesiune(userList.get(0).getFirstName());
+//            System.out.println("sesiunea realizata cu: "+token);
         }catch (UserException e){
             throw new Exception("Eroare aici");
         }
         userSession.setId(userList.get(0).getId());
-        return "Login succes";
+        return  userList.get(0).getFirstName()+" was login";
     }
 
 }
